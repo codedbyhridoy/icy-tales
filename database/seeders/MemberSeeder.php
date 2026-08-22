@@ -1,0 +1,148 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Member;
+
+class MemberSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Member::insert([
+            [
+                'first_name' => 'John',
+                'last_name' => 'Anderson',
+                'designation' => 'Founder & CEO',
+                'bio' => 'Passionate about crafting premium ice cream with the finest ingredients.',
+                'image' => 'team-members/member-1.jpg',
+                'facebook' => 'https://facebook.com/john.anderson',
+                'instagram' => 'https://instagram.com/john.anderson',
+                'youtube' => 'https://youtube.com/@johnanderson',
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Emma',
+                'last_name' => 'Wilson',
+                'designation' => 'Operations Manager',
+                'bio' => 'Ensures every customer enjoys a delightful experience.',
+                'image' => 'team-members/member-2.jpg',
+                'facebook' => 'https://facebook.com/emma.wilson',
+                'instagram' => 'https://instagram.com/emma.wilson',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Michael',
+                'last_name' => 'Brown',
+                'designation' => 'Head Chef',
+                'bio' => 'Creates our signature ice cream recipes loved by everyone.',
+                'image' => 'team-members/member-3.jpg',
+                'facebook' => 'https://facebook.com/michael.brown',
+                'instagram' => 'https://instagram.com/michael.brown',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Sophia',
+                'last_name' => 'Davis',
+                'designation' => 'Pastry Chef',
+                'bio' => 'Specializes in desserts and premium toppings.',
+                'image' => 'team-members/member-4.jpg',
+                'facebook' => 'https://facebook.com/sophia.davis',
+                'instagram' => 'https://instagram.com/sophia.davis',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Daniel',
+                'last_name' => 'Miller',
+                'designation' => 'Store Manager',
+                'bio' => 'Keeps the team organized and customers happy.',
+                'image' => 'team-members/member-5.jpg',
+                'facebook' => 'https://facebook.com/daniel.miller',
+                'instagram' => 'https://instagram.com/daniel.miller',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Olivia',
+                'last_name' => 'Taylor',
+                'designation' => 'Marketing Manager',
+                'bio' => 'Connects our sweet treats with ice cream lovers.',
+                'image' => 'team-members/member-6.jpg',
+                'facebook' => 'https://facebook.com/olivia.taylor',
+                'instagram' => 'https://instagram.com/olivia.taylor',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'James',
+                'last_name' => 'Johnson',
+                'designation' => 'Customer Support Lead',
+                'bio' => 'Dedicated to making every visit memorable.',
+                'image' => 'team-members/member-7.jpg',
+                'facebook' => 'https://facebook.com/james.johnson',
+                'instagram' => 'https://instagram.com/james.johnson',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Isabella',
+                'last_name' => 'Moore',
+                'designation' => 'Quality Assurance',
+                'bio' => 'Maintains the highest quality standards for every scoop.',
+                'image' => 'team-members/member-8.jpg',
+                'facebook' => 'https://facebook.com/isabella.moore',
+                'instagram' => 'https://instagram.com/isabella.moore',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'William',
+                'last_name' => 'Thomas',
+                'designation' => 'Creative Designer',
+                'bio' => 'Designs eye-catching branding and promotional campaigns.',
+                'image' => 'team-members/member-9.jpg',
+                'facebook' => 'https://facebook.com/william.thomas',
+                'instagram' => 'https://instagram.com/william.thomas',
+                'youtube' => 'https://youtube.com/@williamthomas',
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Charlotte',
+                'last_name' => 'Martin',
+                'designation' => 'Social Media Manager',
+                'bio' => 'Shares our sweetest moments across social platforms.',
+                'image' => 'team-members/member-10.jpg',
+                'facebook' => 'https://facebook.com/charlotte.martin',
+                'instagram' => 'https://instagram.com/charlotte.martin',
+                'youtube' => null,
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+    }
+}

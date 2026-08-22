@@ -1,0 +1,78 @@
+[
+  {
+    "id": "complaint",
+    "question": "Select a symptom that best describes your condition.",
+    "description": "",
+    "options": [
+      { "label": "Sleeping disorder" },
+      { "label": "Chronic pain" },
+      { "label": "Migraine" },
+      { "label": "Other" }
+    ]
+  },
+  {
+    "id": "symptoms_appearance",
+    "question": "When did your symptoms appear?",
+    "description": "",
+    "options": [
+      {
+        "label": "1-7 days",
+        "disabled": true
+      },
+      {
+        "label": "1-4 weeks ago"
+      },
+      {
+        "label": "1-3 months ago",
+        "children": [
+          {
+            "id": "symptom_frequency",
+            "question": "How often do you experience the symptoms?",
+            "description": "",
+            "options": [
+              { "label": "Constantly" },
+              { "label": "Daily" },
+              { "label": "Weekly" },
+              { "label": "Monthly" },
+              { "label": "Less often" }
+            ]
+          }
+        ]
+      },
+      { "label": "3-12 months ago" },
+      { "label": "1-5 years ago" },
+      { "label": "More than 5 years" }
+    ]
+  },
+  {
+    "id": "treatment",
+    "question": "Has a doctor already diagnosed your condition and possibly treated it?",
+    "description": "",
+    "options": [
+      {
+        "label": "Yes",
+        "children": [
+          {
+            "id": "therapy_attempted",
+            "question": "Have you tried all the appropriate therapy options, but they were not effective enough or the disadvantages outweighed?",
+            "description": "",
+            "options": [
+              { "label": "Yes" },
+              { "label": "No" }
+            ]
+          }
+        ]
+      },
+      { "label": "No" }
+    ]
+  },
+  {
+    "id": "consent",
+    "question": "Do you agree?",
+    "description": "<div><p class=\"text-gray-700 my-4 text-body\">I confirm, I don't meet any of the following criteria.</p><ol class=\"list-disc ml-4 text-body-sm my-4 space-y-2\"><li class=\"text-body-sm text-gray-500\">You have not used up the previously prescribed cannabis yourself to the extent that it is completely used up within 10 days as per the doctor’s instructions.</li><li class=\"text-body-sm text-gray-500\">The disadvantages of your previous cannabis consumption outweigh the advantages</li><li class=\"text-body-sm text-gray-500\">You have had a psychosis, schizophrenic episode or other serious mental illness at least once in your life</li><li class=\"text-body-sm text-gray-500\">You have severe cardiovascular disease, liver or kidney dysfunction, shortness of breath or lung disease</li><li class=\"text-body-sm text-gray-500\">You suffer from severe depression with thoughts of harming yourself (suicidal)</li><li class=\"text-body-sm text-gray-500\">In addition to your current symptoms, you have another chronic illness</li><li class=\"text-body-sm text-gray-500\">You work as a car driver</li><li class=\"text-body-sm text-gray-500\">You are allergic to cannabis</li></ol></div>",
+    "options": [
+      { "label": "Yes" },
+      { "label": "No", "disabled": true }
+    ]
+  }
+]
