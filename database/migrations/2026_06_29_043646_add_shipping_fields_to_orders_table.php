@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('phone')->after('email');
-            $table->string('address')->after('city_id');
-            $table->string('country')->default('Bangladesh')->after('address');
-        });
+        // These fields already exist in the original orders table migration.
+        // Keep this migration as a no-op so the historical migration order stays valid
+        // without attempting to add duplicate columns on fresh installs.
     }
 
     /**
@@ -23,12 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn([
-                'phone',
-                'address',
-                'country'
-            ]);
-        });
+        // No schema changes were made in up().
     }
 };
