@@ -59,6 +59,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+        ])->validateCsrfTokens(except: [
+            'payment/success',
+            'payment/fail',
+            'payment/cancel',
+            'payment/ipn',
+            'payment/stripe/webhook',
         ])->alias([
             'precognitive' => HandlePrecognitiveRequests::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,

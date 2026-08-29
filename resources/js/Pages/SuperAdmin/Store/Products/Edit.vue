@@ -156,7 +156,30 @@ function generateSKU(options) {
     );
 }
 
+function sanitizeOptions(options) {
+    return options
+        .map((option) => ({
+            name: option.name?.trim() ?? '',
+            type: option.type?.trim() ?? '',
+            values: (option.values ?? [])
+                .map((value) => value?.trim() ?? '')
+                .filter((value) => value),
+        }))
+        .filter((option) => option.name && option.type && option.values.length);
+}
+
+function sanitizeVariants(variants) {
+    return variants.map((variant) => ({
+        ...variant,
+        price: Math.max(0, Number(variant.price) || 0),
+        stock: Math.max(0, Number(variant.stock) || 0),
+    }));
+}
+
 const submit = () => {
+    form.options = sanitizeOptions(form.options);
+    form.variants = sanitizeVariants(form.variants);
+
     form.submit({
         forceFormData: true,
 

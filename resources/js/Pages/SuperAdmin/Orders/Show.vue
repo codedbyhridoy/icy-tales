@@ -28,10 +28,8 @@ const props = defineProps({
     order: Object,
 });
 
-console.log(props.order);
-
 const form = useForm('patch', route('super_admin.orders.update.status', props.order.id), {
-    status: props.order.stauts
+    status: props.order.status
 });
 
 const submit = () => {
@@ -147,14 +145,14 @@ const submit = () => {
                         <div>
                             <p class="text-muted-foreground">Payment Method</p>
 
-                            <p>{{ order.payment_method }}</p>
+                            <p>{{ order.latest_payment?.gateway ?? 'n/a' }}</p>
                         </div>
 
                         <div>
                             <p class="text-muted-foreground">Payment Status</p>
 
                             <Badge>
-                                {{ order.payment_status }}
+                                {{ order.latest_payment?.status ?? 'pending' }}
                             </Badge>
                         </div>
 

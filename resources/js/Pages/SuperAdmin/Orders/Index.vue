@@ -152,11 +152,11 @@ const can = computed(() => page.props.auth.can);
                                     </TableCell>
 
                                     <TableCell>
-                                        {{ order.payment_method }}
+                                        {{ order.latest_payment?.gateway ?? 'n/a' }}
                                     </TableCell>
 
                                     <TableCell>
-                                        {{ order.payment_status }}
+                                        {{ order.latest_payment?.status ?? 'pending' }}
                                     </TableCell>
 
                                      <TableCell>

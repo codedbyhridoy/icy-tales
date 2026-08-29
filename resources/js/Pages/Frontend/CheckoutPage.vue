@@ -33,7 +33,7 @@ const form = useForm('post', route('checkout.store'), {
     city_id: null,
     address: '',
     postal_code: '',
-    payment_method: 'sslcommerz',
+    payment_method: 'cod', // COD is the safe default when online gateway credentials are not configured locally.
 });
 
 const submit = () => {
@@ -257,7 +257,33 @@ const cities = computed(() => {
                                     v-model="form.payment_method"
                                     class="space-y-5"
                                 >
-                                    <!-- Credit Card -->
+                                    <!-- Stripe -->
+                                    <label
+                                        for="stripe"
+                                        class="border-gray-soft has-[[data-state=checked]]:border-rose-aura has-[[data-state=checked]]:bg-rose-aura/5 flex h-12.5 cursor-pointer items-center justify-between rounded-full border px-5 has-[[data-state=checked]]:shadow-[0_8px_24px_rgba(248,61,142,0.12)]"
+                                    >
+                                        <div class="flex items-center gap-[15px]">
+                                            <RadioGroupItem
+                                                id="stripe"
+                                                value="stripe"
+                                                class="border-gray-soft data-[state=checked]:border-rose-aura h-7 w-7 border text-white transition-all duration-400 data-[state=checked]:border-7"
+                                            />
+
+                                            <span class="text-oxblood text-base font-medium">
+                                                Stripe
+                                            </span>
+                                        </div>
+
+                                        <div class="h-auto max-w-[122px]">
+                                            <img
+                                                src="/assets/images/checkout-cardimage.png"
+                                                alt="Stripe payment"
+                                                class="w-full"
+                                            />
+                                        </div>
+                                    </label>
+
+                                    <!-- SSLCommerz -->
                                     <label
                                         for="sslcommerz"
                                         class="border-gray-soft has-[[data-state=checked]]:border-rose-aura has-[[data-state=checked]]:bg-rose-aura/5 flex h-12.5 cursor-pointer items-center justify-between rounded-full border px-5 has-[[data-state=checked]]:shadow-[0_8px_24px_rgba(248,61,142,0.12)]"
@@ -271,17 +297,15 @@ const cities = computed(() => {
                                                 class="border-gray-soft data-[state=checked]:border-rose-aura h-7 w-7 border text-white transition-all duration-400 data-[state=checked]:border-7"
                                             />
 
-                                            <span
-                                                class="text-oxblood text-base font-medium"
-                                            >
-                                                Credit Card
+                                            <span class="text-oxblood text-base font-medium">
+                                                SSLCommerz
                                             </span>
                                         </div>
 
                                         <div class="h-auto max-w-[122px]">
                                             <img
                                                 src="/assets/images/checkout-cardimage.png"
-                                                alt="Payment Card Images"
+                                                alt="SSLCommerz payment"
                                                 class="w-full"
                                             />
                                         </div>
@@ -311,6 +335,10 @@ const cities = computed(() => {
                                     </label>
                                 </RadioGroup>
                             </div>
+                            <InputError
+                                :message="form.errors.payment_method"
+                                class="mt-1"
+                            />
                         </div>
                     </div>
                     <div class="mt-9.5">

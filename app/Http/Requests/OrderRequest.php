@@ -70,6 +70,7 @@ class OrderRequest extends FormRequest
                 'required',
                 Rule::in([
                     'cod',
+                    'sslcommerz',
                     'stripe',
                     'paypal',
                     'bkash',

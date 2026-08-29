@@ -145,6 +145,15 @@ Route::middleware('auth')->group(function () {
 Route::get('/payment/sslcommerz/{order}', [PaymentController::class, 'sslcommerz'])
     ->name('payment.sslcommerz');
 
+Route::get('/payment/stripe/{payment}/success', [PaymentController::class, 'stripeSuccess'])
+    ->name('payment.stripe.success');
+
+Route::get('/payment/stripe/{payment}/cancel', [PaymentController::class, 'stripeCancel'])
+    ->name('payment.stripe.cancel');
+
+Route::post('/payment/stripe/webhook', [PaymentController::class, 'stripeWebhook'])
+    ->name('payment.stripe.webhook');
+
 Route::post('/payment/success', [PaymentController::class, 'success'])
     ->name('payment.success');
 
@@ -195,7 +204,7 @@ Route::prefix('status')
 
         Route::get('/order-success', function () {
             return Inertia::render('Frontend/Status/Success');
-        })->name('order.success');
+        })->name('status.order.success'); // Match the checkout/payment redirects.
 
         Route::get('/page-not-found', function () {
             return Inertia::render('Frontend/Status/NotFound');

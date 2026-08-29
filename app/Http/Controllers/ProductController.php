@@ -36,23 +36,17 @@ class ProductController extends Controller
             ->paginate(6)
             ->withQueryString();
 
-        $page = $request->input('featured-page', 1);
-
-        $featured_products = Cache::remember(
-            "featured_products_{$page}",
-            now()->addMinutes(30),
-            fn() => Product::query()
-                ->with([
-                    'category',
-                    'images',
-                    'options.values',
-                    'variants',
-                ])
-                ->where('is_active', true)
-                ->where('is_featured', true)
-                ->latest()
-                ->paginate(10, ['*'], 'featured_page')
-        );
+        $featured_products = Product::query()
+            ->with([
+                'category',
+                'images',
+                'options.values',
+                'variants',
+            ])
+            ->where('is_active', true)
+            ->where('is_featured', true)
+            ->latest()
+            ->paginate(10, ['*'], 'featured_page');
 
         return Inertia::render('Frontend/ProductCategoryPage', [
             'categories' => $categories,

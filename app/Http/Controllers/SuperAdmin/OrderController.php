@@ -14,7 +14,7 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
-        if (! auth()->guard('admin')->user()->hasPermissionto('manage blog-categories')) {
+        if (! auth()->guard('admin')->user()->hasPermissionto('manage orders')) {
             abort(403);
         }
 
@@ -34,7 +34,7 @@ class OrderController extends Controller
         ]);
 
         $orders = Order::query()
-            ->with('city.state')
+            ->with(['city.state', 'latestPayment'])
             ->filter($filters)
             ->latest()
             ->paginate($request->per_page ?? 12)
@@ -48,13 +48,14 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        if (! auth()->guard('admin')->user()->hasPermissionto('manage blog-categories')) {
+        if (! auth()->guard('admin')->user()->hasPermissionto('manage orders')) {
             abort(403);
         }
 
         $order->load([
             'city.state',
-            'orderItems.product.images'
+            'orderItems.product.images',
+            'latestPayment',
         ]);
 
         return Inertia::render('SuperAdmin/Orders/Show', [
@@ -64,7 +65,7 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request, Order $order)
     {
-        if (! auth()->guard('admin')->user()->hasPermissionto('manage blog-categories')) {
+        if (! auth()->guard('admin')->user()->hasPermissionto('manage orders')) {
             abort(403);
         }
 

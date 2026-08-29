@@ -95,10 +95,6 @@ class CheckoutController extends Controller
                 'discount' => $summary['discount'],
                 'total' => $summary['total'],
 
-                // Payment
-                'payment_method' => $request->payment_method,
-                'payment_status' => 'pending',
-
                 // Order
                 'status' => 'pending',
             ]);
@@ -168,25 +164,41 @@ class CheckoutController extends Controller
                 'status' => 'pending',
             ]);
 
-            DB::commit();
+            // Stripe/online gateway initialization will fail here if the required
+            // credentials are missing from .env, so return a clear validation error
+            // instead of the generic "Something went wrong" message.
+            if ($payment->gateway === 'stripe' && ! config('services.stripe.secret')) {
+                DB::rollBack();
 
-            /*
-            |--------------------------------------------------------------------------
-            | Cash On Delivery
-            |--------------------------------------------------------------------------
-            */
+                return back()->withErrors([
+                    'payment_method' =>
+                        'Stripe is not configured on this server. Please choose COD or SSLCommerz.',
+                ]);
+            }
+
+            if ($payment->gateway === 'sslcommerz' && (
+                ! config('services.sslcommerz.store_id') ||
+                ! config('services.sslcommerz.store_password')
+            )) {
+                DB::rollBack();
+
+                return back()->withErrors([
+                    'payment_method' =>
+                        'SSLCommerz is not configured on this server. Please choose COD or Stripe.',
+                ]);
+            }
+
+            DB::commit();
 
             if ($payment->gateway === 'cod') {
                 $this->cartService->clear();
 
-                return Redirect::route('order.success');
+                return Redirect::route('status.order.success');
             }
 
-            /*
-            |--------------------------------------------------------------------------
-            | Online Payment Gateway
-            |--------------------------------------------------------------------------
-            */
+            if ($payment->gateway === 'sslcommerz') {
+                return Redirect::route('payment.sslcommerz', $order);
+            }
 
             $gateway = $this->paymentManager->gateway(
                 $payment->gateway
