@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -37,6 +38,9 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/about', [AboutController::class, 'index'])
     ->name('about.index');
+
+Route::get('/faqs', [FaqsController::class, 'index'])
+    ->name('faqs.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -220,10 +224,6 @@ Route::get('/special-offers', function () {
 Route::get('/review', function () {
     return Inertia::render('Frontend/ReviewPage');
 })->name('review');
-
-Route::get('/faqs', function () {
-    return 'This is faqs page';
-})->name('faqs');
 
 /*
 |--------------------------------------------------------------------------

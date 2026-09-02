@@ -68,7 +68,7 @@ const navigationItems = [
     {
         id: 5,
         label: 'FAQs',
-        link: 'faqs',
+        link: 'faqs.index',
     },
 ];
 
