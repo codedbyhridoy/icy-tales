@@ -49,3 +49,18 @@ Tests use MySQL database `testing` (see phpunit.xml), not SQLite. That database 
 **Admin list filtering.** Models expose `filter()` / `frontendFilter()` scopes that take `search`, `sort_by`, and `sort_type` from the request. They pair with `useSearchAndSort.js` on the frontend.
 
 **Other notes.** Honeybadger reports exceptions. Notifications and mail are queued (`QUEUE_CONNECTION=database`), so run the queue worker (`composer dev` starts one). `api/*` 404 and 401 errors return JSON.
+
+
+## Working Rules
+
+- Before making changes, inspect the relevant files and understand the existing code.
+- Keep the existing design, behavior, and coding patterns. Do not redesign or refactor unrelated parts.
+- Make only the changes needed for the requested task.
+- Do not modify `.env`, secrets, or database data.
+- Never run destructive commands such as `migrate:fresh`, `db:wipe`, or database reset commands without my approval.
+- Do not edit files inside `vendor/`. Fix issues through Composer dependencies or project code.
+- Before editing, check `git status` and do not overwrite my uncommitted changes.
+- Work in small batches. After each batch, explain what changed and run the relevant tests or checks.
+- If you find an unrelated issue, report it instead of fixing it automatically.
+- If a change could break existing features, explain the risk and ask before proceeding.
+- After completing a task, summarize the changed files, tests run, and any remaining issues.
